@@ -11,10 +11,10 @@ ARG os_release="master"
 RUN apt-get update
 RUN apt-get install -y wget git xvfb inetutils-tools inetutils-ping python-setuptools python-dev build-essential python-pip
 RUN pip install virtualenv
-RUN git clone -b $(os_release) https://github.com/openstack/horizon.git /opt/horizon
+RUN git clone -b $os_release https://github.com/openstack/horizon.git /opt/horizon
 RUN wget https://ftp.mozilla.org/pub/firefox/releases/44.0/linux-x86_64/en-US/firefox-44.0.tar.bz2
 RUN tar -xjf firefox-44.0.tar.bz2
 RUN mv firefox /usr/bin/firefoxold
 RUN ln -s /opt/firefox44/firefox /usr/bin/firefox
 ADD horizon.conf /opt/horizon/openstack_dashboard/test/integration_tests/
-CMD ./opt/horizon/run_test.sh --selenium-headless --integration
+CMD cd /opt/horizon; ./run_tests.sh -V --selenium-headless --integration
