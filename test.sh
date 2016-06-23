@@ -1,6 +1,6 @@
 #!/bin/sh
 
-
+docker build -t $os_release --build-arg os_release=$os_release .
 sed -i "/dashboard_url/c\dashboard_url=$VART" horizon.conf
 sed -i "s/^username=.*/username=$VUSR/g" horizon.conf
 sed -i "s/^password=.*/password=$VPWD/g" horizon.conf
