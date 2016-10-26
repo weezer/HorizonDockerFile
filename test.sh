@@ -8,4 +8,5 @@ sed -i "s/^admin_username=.*/admin_username=$ADUSR/g" horizon.conf
 sed -i "s/^admin_password=.*/admin_password=$ADPWD/g" horizon.conf
 echo $os_release
 docker run -t $os_release
+docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
